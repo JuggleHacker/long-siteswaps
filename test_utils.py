@@ -1,4 +1,4 @@
-from utils import is_valid, ways_to_complete, two_locals_to_global, global_to_two_locals, extend_global_preserving_both_locals, ways_to_extend, search, human_readable_string
+from utils import is_valid, ways_to_complete, two_locals_to_global, global_to_two_locals, extend_global_preserving_both_locals, ways_to_extend, search, human_readable_string, human_readable_locals
 from approvers import has_pass
 
 def test_is_valid_with_valid():
@@ -53,3 +53,7 @@ def test_search_depth_1():
 def test_human_readable_string():
     pattern = [5, 6, 7, 8, 9, 10, 11]
     assert human_readable_string(pattern) == "56789ab"
+
+def test_human_readable_locals():
+    pattern = [10, 11, 5, 6, 7, 8]
+    assert human_readable_locals(pattern) == "a57 vs b68"

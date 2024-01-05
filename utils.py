@@ -55,7 +55,8 @@ def search(pattern, throws, approvers, depth):
             if not is_siteswap_already_there(options, next_patterns):
                 next_patterns.append(options)
         if not next_patterns:
-            yield pattern
+            if is_valid(pattern):
+                yield pattern
         else:
             for next_pattern in next_patterns:
                 yield from search(next_pattern, throws, approvers, depth - 1)
@@ -68,3 +69,7 @@ def search_multiple_seeds(patterns, throws, approvers, depth):
 def human_readable_string(siteswap):
     throw_string = "0123456789abcdefghijklmnopqrstuvwxyz"
     return "".join(throw_string[throw] for throw in siteswap)
+
+def human_readable_locals(siteswap):
+    locals = global_to_two_locals(siteswap)
+    return " vs ".join(human_readable_string(local) for local in locals)
