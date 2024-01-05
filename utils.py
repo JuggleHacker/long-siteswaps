@@ -65,3 +65,6 @@ def search_multiple_seeds(patterns, throws, approvers, depth):
         yield from search(pattern, throws, approvers, depth)
 
 
+def human_readable_string(siteswap):
+    throw_string = "0123456789abcdefghijklmnopqrstuvwxyz"
+    return "".join(throw_string[throw] for throw in siteswap)
