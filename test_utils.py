@@ -21,7 +21,7 @@ def test_ways_to_complete_one_missing():
 def test_ways_to_complete_with_approver():
     two_missing = ["?", "?", 6]
     throws = [5, 6, 7]
-    options = ways_to_complete(two_missing, throws, has_pass)
+    options = ways_to_complete(two_missing, throws, [has_pass])
     assert list(options) == [[7, 5, 6]] # no [6, 6, 6]
 def test_locals_to_global():
     local_one = [1, 2, 3]
@@ -43,9 +43,9 @@ def test_ways_to_extend():
     assert [8, 6, 7, 7, 7, 7] in options
 
 def test_search_depth_0():
-    assert list(search([[[8, 6]]], [4, 5, 6, 7, 8, 9], has_pass, depth=0)) == [[8, 6]]
+    assert list(search([8, 6], [4, 5, 6, 7, 8, 9], [has_pass], depth=0)) == [[8, 6]]
 
 def test_search_depth_1():
     known_pattern = [[8, 6, 7, 7, 7, 7]]
-    all_patterns = list(search([[[8, 6]]], [4, 5, 6, 7, 8, 9], has_pass, depth=1))
+    all_patterns = list(search([8, 6], [4, 5, 6, 7, 8, 9], [has_pass], depth=1))
     assert  all(pattern in all_patterns for pattern in known_pattern)
