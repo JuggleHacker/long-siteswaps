@@ -1,5 +1,3 @@
-from approvers import has_pass, no_dragon, no_repeated_pairs
-
 def is_valid(siteswap):
     landing_sites = set()
     for time, throw in enumerate(siteswap):
