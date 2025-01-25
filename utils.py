@@ -83,3 +83,21 @@ def state(siteswap):
     for landing_site in landing_sites:
         siteswap_state[landing_site] = 1
     return siteswap_state
+
+def find_blocks(siteswap, block_length, valid_block_throws):
+    """
+    A "block" is a series of throws which can be added to the end of a valid siteswap to give a longer valid siteswap.
+    This function will find all blocks of length block_length consisting of valid_block_throws which can be used
+    to extend the given siteswap.
+    For example, if you are trying to extend 6 club why-not, starting from the 4-2 start:
+    why_not_four_two_start = [7,8,6,2,7] * 2  # 2 rounds so both jugglers get five throws
+    why_not_blocks = find_blocks(why_not_four_two_start(why_not_four_two_start, 4, [2, 6, 7, 8]))
+    print(why_not_blocks)
+    >> [[7, 7, 8, 2], [8, 6, 8, 2]]
+    This means both the following are valid patterns:
+    [7, 8, 6, 2, 7, 7, 8, 6, 2, 7, 7, 7, 8, 2]
+    and
+    [7, 8, 6, 2, 7, 7, 8, 6, 2, 7, 8, 6, 8, 2]
+    """
+    blocks_length_4 = [block[-4:] for block in ways_to_complete(siteswap + ['?'] * block_length, valid_block_throws)]
+    return blocks_length_4
