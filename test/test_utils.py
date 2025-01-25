@@ -1,4 +1,5 @@
-from utils import is_valid, ways_to_complete, two_locals_to_global, global_to_two_locals, extend_global_preserving_both_locals, ways_to_extend, search, human_readable_string, human_readable_locals
+from utils import is_valid, ways_to_complete, two_locals_to_global, global_to_two_locals, \
+    extend_global_preserving_both_locals, ways_to_extend, search, human_readable_string, human_readable_locals, state
 from approvers import has_pass
 
 def test_is_valid_with_valid():
@@ -57,3 +58,17 @@ def test_human_readable_string():
 def test_human_readable_locals():
     pattern = [10, 11, 5, 6, 7, 8]
     assert human_readable_locals(pattern) == "a57 vs b68"
+
+def test_three_object_ground_state():
+    ground_state_3_objects = [
+        [3,3,3],
+        [4, 2, 3],
+        [5, 3, 1],
+    ]
+    for pattern in ground_state_3_objects:
+        assert state(pattern) == [1, 1, 1]
+
+def test_441_states():
+    assert state([4, 4, 1]) == [1,1,1]
+    assert state([4, 1, 4]) == [1,1, 0, 1]
+    assert state([1, 4, 4]) == [1, 0, 1, 1]

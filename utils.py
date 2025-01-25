@@ -73,3 +73,15 @@ def human_readable_string(siteswap):
 def human_readable_locals(siteswap):
     locals = global_to_two_locals(siteswap)
     return " vs ".join(human_readable_string(local) for local in locals)
+
+def state(siteswap):
+    max_throw = max(siteswap)
+    landing_sites = set()
+    for i in range(1, max_throw+1):
+        landing_site = -i + siteswap[-i % len(siteswap)]
+        if landing_site >= 0:
+            landing_sites.add(landing_site)
+    siteswap_state = [0] * (max(landing_sites) + 1)
+    for landing_site in landing_sites:
+        siteswap_state[landing_site] = 1
+    return siteswap_state
