@@ -99,5 +99,5 @@ def find_blocks(siteswap, block_length, valid_block_throws):
     and
     [7, 8, 6, 2, 7, 7, 8, 6, 2, 7, 8, 6, 8, 2]
     """
-    blocks_length_4 = [block[-4:] for block in ways_to_complete(siteswap + ['?'] * block_length, valid_block_throws)]
+    blocks_length_4 = [block[-block_length:] for block in ways_to_complete(siteswap + ['?'] * block_length, valid_block_throws)]
     return blocks_length_4
